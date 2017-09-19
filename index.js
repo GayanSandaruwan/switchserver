@@ -11,7 +11,9 @@ io.on('connection', function(socket){
 	
 	console.log('A User Connected');	
 });
-http.listen(3001, function(){
+
+var port = process.env.PORT || 3001;
+http.listen(port, function(){
 
 	console.log('Starting to listen On Port 3001');
 });
