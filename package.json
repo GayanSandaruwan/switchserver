@@ -1,0 +1,22 @@
+{
+  "name": "switchserver",
+  "version": "1.0.0",
+  "description": "IOT server to process switching function of a physical switch through a NodeMC module. Server is implemented as a REST service with Socket.io Transmission Protocole based.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "IOT",
+    "Sitch",
+    "REST",
+    "IOT",
+    "server"
+  ],
+  "author": "Gayan Sandaruwan De Silva, gayankavirathne.14@cse.mrt.ac.lk, https://www.github.com/gayanSandaruwan",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.4",
+    "socket.io": "^2.0.3"
+  }
+}
