@@ -16,7 +16,7 @@ let router = express.Router();
 //set our port to either a predetermined port number if you have set
 //it up, or 3001
 let port = process.env.API_PORT || 3001;
-let dbURL = process.env.MONGOLAB_URI || "localhost:27017/switchserver";//"mongodb://switchserver:switchserver@ds141264.mlab.com:41264/switchserver" //"mongodb://test:asd123@ds139791.mlab.com:39791/travelaround";//"localhost:27017/TravelAround";
+let dbURL = process.env.MONGOLAB_URI || "mongodb://switchserver:switchserver@ds141264.mlab.com:41264/switchserver" ;//"localhost:27017/switchserver";
 
 // mongoose.connect(dbURL);
 // var promise = mongoose.createConnection(dbURL, {
