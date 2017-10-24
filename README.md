@@ -23,6 +23,26 @@ http://localhost:3001/api/SignIn
 		"key" : "sadfasd"
 	}
 
+# Adding a New Bulb 
+
+Method -POST
+http://localhost:3001/api/bulb/new
+
+	{
+	    "name" : "House"
+	}
+
+# Adding a New Switch With bulbs Group
+
+Method - POST
+http://localhost:3001/api/switch/new
+
+	{
+	
+		"name": "switch 1",
+		"bulbs" : "[1,2]",
+	}
+
 
 # Assigning a switch To the User
 
@@ -34,7 +54,8 @@ http://localhost:3001/api/user/switch
 		"switch" : "1"
 	}
 
-# Getting The Buttons Assigned to a User
+
+# Getting The switches Assigned to a User
 
 
 Method - POST
@@ -55,33 +76,11 @@ http://localhost:3001/api/switch/bulbs
 	}
 
 
-# Adding a New Switch With bulbs Group
+
+# Changing the State Of switch
 
 Method - POST
-http://localhost:3001/api/switch/new
-
-	{
-	
-		"name": "switch 1",
-		"bulbs" : "[1,2]",
-	}
-
-
-# Adding a New Bulb 
-
-Method -POST
-http://localhost:3001/api/bulb/new
-
-	{
-	    "name" : "House"
-	}
-
-
-
-# Changing the State
-
-Method - POST
-http://localhost:3001/api/bulb/state
+http://localhost:3001/api/switch/state
 
 	{
 		"state" : true,

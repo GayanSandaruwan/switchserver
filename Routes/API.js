@@ -30,7 +30,7 @@ router.route('/register')
         user.first_name = req.body.first_name;
         user.last_name = req.body.last_name;
         user.email = req.body.email;
-        user.key = random.generate(6);
+        user.key = req.body.key;                                    //random.generate(6);
         let success = mailer.sendMail(user.key,user.email);
         console.log("Trying To register");
         user.save(function(err) {
@@ -214,8 +214,9 @@ router.route('/bulb/new')
         console.log(req.body);
         let newBulb = new Bulb();
         newBulb.Name = req.body.name;
+        newBulb.user = req.body.user;
         newBulb.state = false;
-        BulbGroup.find().count(function (err, count) {
+        Bulb.find().count(function (err, count) {
             newBulb.bulb = count;
             newBulb.save(function(err, bulb){
 
@@ -228,7 +229,21 @@ router.route('/bulb/new')
     });
 
 
-router.route('/bulb/state')      
+router.route('/user/bulbs')      
+      //Buttons Assigned for a user
+    .post(function(req, res) {
+
+        console.log(req.body);
+        let user = req.body.email;
+        Bulb.find({user : user},function(err, bulbs){
+
+            res.send({message : bulbs});
+        });                                     
+    });
+
+    
+
+router.route('/switch/state')      
       //Buttons Assigned for a user
     .post(function(req, res) {
 
