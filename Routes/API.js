@@ -71,15 +71,15 @@ router.route('/user/switch')
       //Add a Switch to the User
 
         console.log(req.body);
-        let email = req.body.email;
+        let user = req.body.user;
         let switchN = req.body.switch;
 
-        UserSwitch.findOne({ 'User': email },function (err, userSwitch) {
+        UserSwitch.findOne({ 'User': user },function (err, userSwitch) {
             if (err) return handleError(err);
 
             // No record In User Switch Relationship
             if (userSwitch == null)
-                User.findOne({'email' : email}, function(err, user){
+                User.findOne({'email' : user}, function(err, user){
 
                     if(err) return handleError(err);
                     else if(user == null){
@@ -89,7 +89,7 @@ router.route('/user/switch')
                     //User Details Available.. Creating new User - Switch entry.
                     else{
                         let newUserSwitch = new UserSwitch();
-                        newUserSwitch.User = req.body.email;
+                        newUserSwitch.User = req.body.user;
                         newUserSwitch.switches = [switchN];
                         newUserSwitch.save(function(err) {
                                 if (err) {
@@ -98,7 +98,7 @@ router.route('/user/switch')
                                 }   
                                 else {
                                     res.json({
-                                        message: 'User successfully added!',
+                                        message: "User   : " + user.first_name + " Saved Successfully" + "Assigned with switch : "+ switchN +" !",
                                         UserSwitch: UserSwitch
                                     });
                                     console.log("User   : " + user.first_name + " Saved Successfully" + "Assigned with switch : "+ switchN );
@@ -114,7 +114,7 @@ router.route('/user/switch')
                 }
                 else{
 
-                    var query = {'User':email};
+                    var query = {'User':user};
                     userSwitch.switches.push(switchN);
                     console.log(userSwitch);
                     UserSwitch.findOneAndUpdate(query, {$set :{switches : userSwitch.switches}}, {upsert:true}, function(err, doc){
@@ -136,11 +136,12 @@ router.route('/user/getSwitches')
 
         console.log(req.body);
 
-        UserSwitch.find({User : req.body.email}, function(err, switches){
+        UserSwitch.find({User : req.body.user}, function(err, switches){
             if(err){
                 res.send({message : false});
             }
-            res.send({message : switches});
+            else
+                res.send({message : switches});
         });
                                        
     });
@@ -234,14 +235,14 @@ router.route('/user/bulbs')
     .post(function(req, res) {
 
         console.log(req.body);
-        let user = req.body.email;
+        let user = req.body.user;
         Bulb.find({user : user},function(err, bulbs){
 
             res.send({message : bulbs});
         });                                     
     });
 
-    
+
 
 router.route('/switch/state')      
       //Buttons Assigned for a user

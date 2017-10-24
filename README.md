@@ -29,8 +29,23 @@ Method -POST
 http://localhost:3001/api/bulb/new
 
 	{
-	    "name" : "House"
+	    
+		"name" : "House",
+		"user" : "gayankavirathne@gmail.com"
+
 	}
+
+#Getting all the bulbs Owned by the user
+
+Method - POST
+http://localhost:3001/api/user/bulbs
+
+	{
+		
+		"user" : "gayankavirathne@gmail.com"
+	
+	}
+
 
 # Adding a New Switch With bulbs Group
 
@@ -40,7 +55,7 @@ http://localhost:3001/api/switch/new
 	{
 	
 		"name": "switch 1",
-		"bulbs" : "[1,2]",
+		"bulbs" : "[1,2]"
 	}
 
 
