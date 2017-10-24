@@ -6,7 +6,7 @@ let transporter = nodemailer.createTransport({
     service: 'zoho',
     auth: {
         user: 'gayan@ciperlabs.com',
-        pass: 'gayan2013'
+        pass: 'gayanzoho2017'
     }
 });
 
