@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 
 
 let transporter = nodemailer.createTransport({
-    service: 'Gmail',
+    service: 'zoho',
     auth: {
         user: 'gayan@ciperlabs.com',
         pass: 'gayan2013'
