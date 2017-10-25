@@ -157,13 +157,16 @@ router.route('/switch/bulbs')
             if(err || bulbgroup==null){
                 res.send({message : false});
             }
+            else{
 
             Bulb.find({ bulb : {$in : bulbgroup.bulbs}}, function(err, bulbs){
                 if(err){
                 res.send({message : false});
                 }
-                res.send({message : bulbs});
+                else
+                    res.send({message : bulbs});
             });
+            }
             
         });
                                        
@@ -186,7 +189,8 @@ router.route('/switch/new')
                 if(err){
                     console.log(err);
                 }
-                res.send({message :bulbGroup});
+                else
+                    res.send({message :bulbGroup});
 
         });
         });
@@ -203,7 +207,8 @@ router.route('/user/getSwitches')
             if(err){
                 res.send({message : false});
             }
-            res.send({message : switches});
+            else
+                res.send({message : switches});
         });
                                        
     });
@@ -224,7 +229,8 @@ router.route('/bulb/new')
                 if(err){
                     res.send({message: false});
                 }
-                res.send({message : bulb});
+                else
+                    res.send({message : bulb});
             });
         });                                     
     });
@@ -257,31 +263,54 @@ router.route('/switch/state')
             if(bulbgroup=null){
                 res.send({message : "No Switch for the given ID"});
             }
+            else{
 
-
-            Bulb.update({bulb : {$in : bulbgroup.bulbs}},{state : state}, function(err, newState){
-
-                if(err){
-                    res.send({message : "No bulb for the ID"});
-                }
-
-                let newBSLog = new BulbSwitchLog();
-                newBSLog.switch = req.body.switch;
-                newBSLog.state = req.body.state;
-
-                newBSLog.save(function(err,log){
+                Bulb.update({bulb : {$in : bulbgroup.bulbs}},{state : state}, function(err, newState){
 
                     if(err){
-                        res.send({message : false});
+                        res.send({message : "No bulb for the ID"});
                     }
-                    res.send({message : log});
-                })
 
-            });       
+                    else{
 
+                        let newBSLog = new BulbSwitchLog();
+                        newBSLog.switch = req.body.switch;
+                        newBSLog.state = req.body.state;
+
+                        newBSLog.save(function(err,log){
+
+                            if(err){
+                                res.send({message : false});
+                            }
+                            res.send({message : log});
+                        });
+                    }
+
+                });
+            }
+
+        });        
+    });
+
+router.route('/bulb/getState')
+    .post(function(req,res){
+
+        console.log(req.body);
+        let bulb = req.body.bulb;
+
+        Bulb.findOne({bulb :bulb}, function(err , bulb){
+
+            if(err){
+                res.send({message : false});
+            }
+            if(bulb == null){
+                res.send({message : false});
+            }
+            else{
+                console.log(bulb.state);
+                res.send({message : bulb})
+            }
         });
-
-                             
     });
 
 

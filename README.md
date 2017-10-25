@@ -65,7 +65,7 @@ Method - POST
 http://localhost:3001/api/user/switch
 
 	{
-		"email" : "gayankavirathne@gmail.com",
+		"user" : "gayankavirathne@gmail.com",
 		"switch" : "1"
 	}
 
@@ -77,7 +77,7 @@ Method - POST
 http://localhost:3001/api/user/getSwitches
 
 	{
-		"email" : "gayankavirathne@gmail.com"
+		"user" : "gayankavirathne@gmail.com"
 	}
 
 
