@@ -101,3 +101,12 @@ http://localhost:3001/api/switch/state
 		"state" : true,
 		"switch" : 1
 	}
+
+# Getting the state of the bulb
+
+Method - POST
+http://localhost:3001/api/switch/state
+
+	{
+		"bulb" : "1"
+	}
